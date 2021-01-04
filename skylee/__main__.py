@@ -33,7 +33,12 @@ from skylee.modules.helper_funcs.alternate import typing_action
 
 PM_START_TEXT = f"""
 LOCKED 🔐
-AUTHORISED CHATS ONLY"""
+AUTHORISED CHATS ONLY
+
+HOST IT YOURSELF
+SOURCE : https://github.com/jayantkageri/NetworkManager
+
+IF YOU DON'T WANT TO HOST YOURSELF, USE @MissEmiliaBot Instead"""
 
 HELP_STRINGS = f"""
 LOCKED 🔐
