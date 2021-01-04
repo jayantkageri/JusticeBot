@@ -1,5 +1,5 @@
 # Skylee Bugs Fixed [ Network Manager ]
-
+It's Just a Clone of [this Repo](https://github.com/EmiliaDevs/SkyleeBot) and I removed unwanted and Fun Modules :|
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/jayantkageri/NetworkManager)
 
 
