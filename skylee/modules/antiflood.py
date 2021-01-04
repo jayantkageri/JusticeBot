@@ -11,7 +11,6 @@ from skylee.modules.helper_funcs.chat_status import is_user_admin, user_admin
 from skylee.modules.helper_funcs.string_handling import extract_time
 from skylee.modules.log_channel import loggable
 from skylee.modules.sql import antiflood_sql as sql
-from skylee.modules.connection import connected
 
 from skylee.modules.helper_funcs.alternate import send_message, typing_action
 
@@ -108,19 +107,6 @@ def set_flood(update, context) -> str:
     message = update.effective_message  # type: Optional[Message]
     args = context.args
 
-    conn = connected(context.bot, update, chat, user.id, need_admin=True)
-    if conn:
-        chat_id = conn
-        chat_name = dispatcher.bot.getChat(conn).title
-    else:
-        if update.effective_message.chat.type == "private":
-            send_message(
-                update.effective_message,
-                "This command is meant to use in group not in PM",
-            )
-            return ""
-        chat_id = update.effective_chat.id
-        chat_name = update.effective_message.chat.title
 
     if len(args) >= 1:
         val = args[0].lower()
@@ -203,19 +189,6 @@ def flood(update, context):
     user = update.effective_user  # type: Optional[User]
     msg = update.effective_message
 
-    conn = connected(context.bot, update, chat, user.id, need_admin=False)
-    if conn:
-        chat_id = conn
-        chat_name = dispatcher.bot.getChat(conn).title
-    else:
-        if update.effective_message.chat.type == "private":
-            send_message(
-                update.effective_message,
-                "This command is meant to use in group not in PM",
-            )
-            return
-        chat_id = update.effective_chat.id
-        chat_name = update.effective_message.chat.title
 
     limit = sql.get_flood_limit(chat_id)
     if limit == 0:
@@ -251,22 +224,6 @@ def set_flood_mode(update, context):
     user = update.effective_user  # type: Optional[User]
     msg = update.effective_message  # type: Optional[Message]
     args = context.args
-
-    conn = connected(context.bot, update, chat, user.id, need_admin=True)
-    if conn:
-        chat = dispatcher.bot.getChat(conn)
-        chat_id = conn
-        chat_name = dispatcher.bot.getChat(conn).title
-    else:
-        if update.effective_message.chat.type == "private":
-            send_message(
-                update.effective_message,
-                "This command is meant to use in group not in PM",
-            )
-            return ""
-        chat = update.effective_chat
-        chat_id = update.effective_chat.id
-        chat_name = update.effective_message.chat.title
 
     if args:
         if args[0].lower() == "ban":
