@@ -32,37 +32,14 @@ from skylee.modules.helper_funcs.alternate import typing_action
 
 
 PM_START_TEXT = f"""
-Hey There ! My name is 𝙈𝙚𝙞𝙠𝙤 
-I'm here to make your group management fun and easy!
-I have lots of handy features, such as flood control, a warning system, a note keeping system, and even replies on predetermined filters.
-Please Click Help Button For Assistance And Help Regarding Special Modules
-You can find the list of available commands with Help Module.
-Any issues or need help related to me?
-==========================
-✗ [Support Channel](t.me/Meikosupport)
-✗ [Support Group](t.me/meikoSupportChat)
-==========================
-Wanna Add me to your Group? Just click the button below!
-"""
-
-buttons = [
-    [
-        InlineKeyboardButton(
-            text="Add Me To Group ➕", url="t.me/meikobot?startgroup=true"
-        ),
-        InlineKeyboardButton(text="Updates & Info 📃", url="https://t.me/meikosupport"),
-    ]
-]
-
-buttons += [[InlineKeyboardButton(text="Help & Commands ❔", callback_data="help_back")]]
-
+LOCKED 🔐
+AUTHORISED CHATS ONLY"""
 
 HELP_STRINGS = f"""
-Hello there! My name is *{dispatcher.bot.first_name}*.
-I'm a modular group management bot with a few fun extras! Have a look at the following for an idea of some of \
-the things I can help you with.
+LOCKED 🔐
+AUTHORISED CHATS ONLY
 
-*Main* commands available:
+AUTHORISED CHATS COMMANDS:
  ✗ `/start` : Starts me, can be used to check i'm alive or no...
  ✗ `/help` : PM's you this message.
  ✗ `/help <module name>` : PM's you info about that module.
@@ -229,7 +206,7 @@ def help_button(update, context):
                 text=text,
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(
-                    [[InlineKeyboardButton(text="⬅️ Back", callback_data="help_back")]]
+                    [[InlineKeyboardButton(text="Back", callback_data="help_back")]]
                 ),
             )
 
