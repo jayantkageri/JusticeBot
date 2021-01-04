@@ -33,16 +33,6 @@ def import_data(update, context):
     # TODO: allow uploading doc with command, not just as reply
     # only work with a doc
 
-    conn = connected(context.bot, update, chat, user.id, need_admin=True)
-    if conn:
-        chat = dispatcher.bot.getChat(conn)
-        chat_name = dispatcher.bot.getChat(conn).title
-    else:
-        if update.effective_message.chat.type == "private":
-            update.effective_message.reply_text(
-                "This command can only be runned on group, not PM."
-            )
-            return ""
 
         chat = update.effective_chat
         chat_name = update.effective_message.chat.title
@@ -128,12 +118,6 @@ def export_data(update, context):
     chat_id = update.effective_chat.id
     chat = update.effective_chat
     current_chat_id = update.effective_chat.id
-    conn = connected(context.bot, update, chat, user.id, need_admin=True)
-    if conn:
-        chat = dispatcher.bot.getChat(conn)
-        chat_id = conn
-        # chat_name = dispatcher.bot.getChat(conn).title
-    else:
         if update.effective_message.chat.type == "private":
             update.effective_message.reply_text(
                 "This command can only be used on group, not PM"
