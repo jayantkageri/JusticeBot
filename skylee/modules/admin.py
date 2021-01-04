@@ -21,7 +21,6 @@ from skylee.modules.helper_funcs.admin_rights import (
     user_can_changeinfo,
 )
 from skylee.modules.helper_funcs.alternate import typing_action
-from skylee.modules.connection import connected
 from skylee.modules.log_channel import loggable
 
 
@@ -233,15 +232,6 @@ def invite(update, context):
     msg = update.effective_message
     chat = update.effective_chat
     args = context.args
-
-    conn = connected(context.bot, update, chat, user.id, need_admin=True)
-    if conn:
-        chat = dispatcher.bot.getChat(conn)
-    else:
-        if msg.chat.type == "private":
-            msg.reply_text("This command is meant to use in chat not in PM")
-            return ""
-        chat = update.effective_chat
 
     if chat.username:
         msg.reply_text(chat.username)
