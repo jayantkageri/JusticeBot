@@ -1,6 +1,6 @@
 
 {
-  "name": "Skylee",
+  "name": "𝙉𝙀𝙏𝙒𝙊𝙍𝙆 𝙈𝘼𝙉𝘼𝙂𝙀𝙍",
   "description": "Telegram's Pro group manager. Modular Telegram group management bot!",
   "logo": "https://telegra.ph/file/63350037b2146671a2511.jpg",
   "keywords": [
@@ -10,7 +10,7 @@
     "manager",
     "3"
   ],
-  "repository": "https://github.com/EmiliaDevs/SkyleeBot.git",
+  "repository": "https://github.com/jayantkageri/NetworkManager",
   "env": {
     "ENV": {
       "description": "Setting this to ANYTHING will enable env variables",
@@ -32,12 +32,12 @@
     },
     "OWNER_ID": {
       "description": "An integer of consisting of your owner ID",
-      "value": "1083049180",
+      "value": "1205330619",
       "required": false
     },
     "OWNER_USERNAME": {
       "description": "Your username",
-      "value": "GodDrick",
+      "value": "jayantkageri",
       "required": false
     },
     "WEBHOOK": {
@@ -59,15 +59,15 @@
     },
     "SUPPORT_USERS": {
       "description": "A space separated list of user_ids which should be considered support users (can gban/ungban, nothing else)",
-      "value": "1083049180"
+      "value": ""
     },
     "WHITELIST_USERS": {
       "description": "A space separated list of user_ids which should be considered whitelisted - they can't be banned.",
-      "value": "1083049180"
+      "value": ""
     },
     "DONATION_LINK": {
       "description": "Optional: link where you would like to receive donations.",
-      "value": "https://www.paypal.me/Your_id_here",
+      "value": "https://me.fampay.in/jayantkageri",
       "required": false
     },
     "PORT": {
@@ -91,7 +91,7 @@
     },
     "BAN_STICKER": {
       "description": "Which sticker to use when banning people. Use https://telegram.dog/ShowJsonBot to get the file_id",
-      "value": "CAADBAAD6AMAAkJ_EQNu_RjOszbmnxYE",
+      "value": "",
       "required": false
     },
     "API_KEY": {
