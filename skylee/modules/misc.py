@@ -136,12 +136,12 @@ def info(update, context):
 
     elif user.id in SUDO_USERS:
         text += (
-            "\n\nThis person is one of my sudo users! ""
+            "\n\nThis person is one of my sudo users! "
         )
 
     elif user.id in SUPPORT_USERS:
         text += (
-            "\n\nThis person is one of my support users! ""
+            "\n\nThis person is one of my support users! "
         )
 
     elif user.id in WHITELIST_USERS:
