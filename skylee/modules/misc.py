@@ -1,6 +1,5 @@
 import html
 import random, re
-import wikipedia
 from typing import Optional, List
 from requests import get
 
