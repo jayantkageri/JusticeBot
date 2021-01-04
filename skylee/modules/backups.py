@@ -21,7 +21,6 @@ from skylee.modules.sql import disable_sql as disabledsql
 # from skylee.modules.sql import cust_filters_sql as filtersql
 # import skylee.modules.sql.welcome_sql as welcsql
 import skylee.modules.sql.locks_sql as locksql
-from skylee.modules.connection import connected
 
 
 @run_async
