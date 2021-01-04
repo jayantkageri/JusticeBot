@@ -176,8 +176,7 @@ def blacklist_mode(update, context):
     user = update.effective_user
     msg = update.effective_message
     args = context.args
-
-       chat_name = update.effective_message.chat.title
+    chat_name = update.effective_message.chat.title
 
     if args:
         if (
