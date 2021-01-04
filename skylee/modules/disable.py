@@ -9,7 +9,6 @@ from skylee import dispatcher
 from skylee.modules.helper_funcs.handlers import CMD_STARTERS
 from skylee.modules.helper_funcs.misc import is_module_loaded
 from skylee.modules.helper_funcs.alternate import send_message, typing_action
-from skylee.modules.connection import connected
 
 FILENAME = __name__.rsplit(".", 1)[-1]
 
