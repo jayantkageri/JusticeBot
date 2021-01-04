@@ -14,7 +14,6 @@ from skylee import (
     SUPPORT_USERS,
     STRICT_GBAN,
     MESSAGE_DUMP,
-    spamwtc,
 )
 from skylee.modules.helper_funcs.chat_status import user_admin, is_user_admin
 from skylee.modules.helper_funcs.extraction import extract_user, extract_user_and_text
