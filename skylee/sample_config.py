@@ -1,13 +1,3 @@
-if not __name__.endswith("sample_config"):
-    import sys
-
-    print(
-        "The README is there to be read. Extend this sample config to a config file, don't just rename and change "
-        "values here. Doing that WILL backfire on you.\nBot quitting.",
-        file=sys.stderr,
-    )
-    quit(1)
-
 
 # Create a new config.py file in same dir and import, then extend this class.
 class Config(object):
@@ -52,7 +42,6 @@ class Config(object):
     ALLOW_EXCL = False  # DEPRECATED, USE BELOW INSTEAD! Allow ! commands as well as /
     CUSTOM_CMD = False  # Set to ('/', '!') or whatever to enable it, like ALLOW_EXCL but with more custom handler!
     API_OPENWEATHER = None  # OpenWeather API
-    SPAMWATCH_API = None  # Your SpamWatch token
 
 
 class Production(Config):
