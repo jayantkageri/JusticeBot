@@ -66,7 +66,7 @@ UNGBAN_ERRORS = {
 
 @run_async
 @typing_action
-def gban(update, context):
+def jban(update, context):
     message = update.effective_message
     chat = update.effective_chat
     args = context.args
@@ -205,7 +205,7 @@ def gban(update, context):
 
 @run_async
 @typing_action
-def ungban(update, context):
+def unjban(update, context):
     message = update.effective_message
     args = context.args
     user_id = extract_user(message, args)
@@ -282,7 +282,7 @@ def ungban(update, context):
 
 @run_async
 @send_action(ChatAction.UPLOAD_DOCUMENT)
-def gbanlist(update, context):
+def jbanlist(update, context):
     banned_users = sql.get_gban_list()
 
     if not banned_users:
@@ -308,20 +308,6 @@ def gbanlist(update, context):
 
 def check_and_ban(update, user_id, should_message=True):
 
-    try:
-        spmban = spamwtc.get_ban(int(user_id))
-        if spmban:
-            update.effective_chat.kick_member(user_id)
-            if should_message:
-                update.effective_message.reply_text(
-                    f"This person has been detected as spambot by @SpamWatch and has been removed!\nReason: <code>{spmban.reason}</code>",
-                    parse_mode=ParseMode.HTML,
-                )
-                return
-            else:
-                return
-    except Exception:
-        pass
 
     if sql.is_user_gbanned(user_id):
         update.effective_chat.kick_member(user_id)
@@ -366,7 +352,7 @@ def enforce_gban(update, context):
 @run_async
 @user_admin
 @typing_action
-def gbanstat(update, context):
+def jbanstat(update, context):
     args = context.args
     if len(args) > 0:
         if args[0].lower() in ["on", "yes"]:
@@ -424,38 +410,30 @@ def __chat_settings__(chat_id, user_id):
 
 __help__ = """
 *Admin only:*
- ✗ /spamshield <on/off/yes/no>: Will disable or enable the effect of Spam protection in your group.
-
-Spam shield uses @Spamwatch API and Global bans to remove Spammers as much as possible from your chatroom!
-
-*What is SpamWatch?*
-
-SpamWatch maintains a large constantly updated ban-list of spambots, trolls, bitcoin spammers and unsavoury characters.
-@Meikobot will constantly help banning spammers off from your group automatically So, you don't have to worry about spammers storming your group[.](https://telegra.ph/file/c1051d264a5b4146bd71e.jpg)
-"""
+Nothing here"""
 
 __mod_name__ = "Spam Shield"
 
 GBAN_HANDLER = CommandHandler(
-    "gban",
-    gban,
+    "jban",
+    jban,
     pass_args=True,
     filters=CustomFilters.sudo_filter | CustomFilters.support_filter,
 )
 UNGBAN_HANDLER = CommandHandler(
-    "ungban",
-    ungban,
+    "unjban",
+    unjban,
     pass_args=True,
     filters=CustomFilters.sudo_filter | CustomFilters.support_filter,
 )
 GBAN_LIST = CommandHandler(
-    "gbanlist",
-    gbanlist,
+    "jbanlist",
+    jbanlist,
     filters=CustomFilters.sudo_filter | CustomFilters.support_filter,
 )
 
 GBAN_STATUS = CommandHandler(
-    "spamshield", gbanstat, pass_args=True, filters=Filters.group
+    "jbanstat", jbanstat, pass_args=True, filters=Filters.group
 )
 
 GBAN_ENFORCER = MessageHandler(Filters.all & Filters.group, enforce_gban)
