@@ -14,7 +14,6 @@ from skylee.modules.helper_funcs.chat_status import (
     bot_admin,
     can_promote,
     user_admin,
-    can_pin,
 )
 from skylee.modules.helper_funcs.extraction import extract_user, extract_user_and_text
 from skylee.modules.helper_funcs.admin_rights import (
@@ -156,7 +155,6 @@ def demote(update, context):
 
 @run_async
 @bot_admin
-@can_pin
 @user_admin
 @loggable
 @typing_action
@@ -170,9 +168,6 @@ def pin(update, context):
 
     prev_message = update.effective_message.reply_to_message
 
-    if user_can_pin(chat, user, context.bot.id) is False:
-        message.reply_text("You are missing rights to pin a message!")
-        return ""
 
     is_silent = True
     if len(args) >= 1:
@@ -205,7 +200,6 @@ def pin(update, context):
 
 @run_async
 @bot_admin
-@can_pin
 @user_admin
 @loggable
 @typing_action
@@ -213,10 +207,6 @@ def unpin(update, context):
     chat = update.effective_chat
     user = update.effective_user
     message = update.effective_message
-
-    if user_can_pin(chat, user, context.bot.id) is False:
-        message.reply_text("You are missing rights to unpin a message!")
-        return ""
 
     try:
         context.bot.unpinChatMessage(chat.id)
