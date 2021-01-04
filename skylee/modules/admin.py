@@ -22,7 +22,7 @@ from skylee.modules.helper_funcs.admin_rights import (
 )
 from skylee.modules.helper_funcs.alternate import typing_action
 from skylee.modules.log_channel import loggable
-
+from skylee.modules.disable import DisableAbleCommandHandler
 
 @run_async
 @bot_admin
