@@ -1,7 +1,6 @@
 import logging
 import os
 import sys
-import spamwatch
 from telethon import TelegramClient
 import telegram.ext as tg
 
@@ -12,7 +11,7 @@ logging.basicConfig(
 
 LOGGER = logging.getLogger(__name__)
 
-LOGGER.info("Starting Skylee...")
+LOGGER.info("Starting...")
 
 # if version < 3.6, stop bot.
 if sys.version_info[0] < 3 or sys.version_info[1] < 6:
@@ -80,7 +79,6 @@ if ENV:
     WALL_API = os.environ.get("WALL_API", None)
     TELETHON_ID = int(os.environ.get("TL_APP_ID", None))
     TELETHON_HASH = os.environ.get("TL_HASH", None)
-    SPAMWATCH = os.environ.get("SPAMWATCH_API", None)
 
 else:
     from skylee.config import Development as Config
@@ -136,17 +134,8 @@ else:
     WALL_API = Config.WALL_API
     TELETHON_HASH = Config.TELETHON_HASH
     TELETHON_ID = Config.TELETHON_ID
-    SPAMWATCH = Config.SPAMWATCH_API
 
 SUDO_USERS.add(OWNER_ID)
-
-# Pass if SpamWatch token not set.
-if SPAMWATCH == None:
-    spamwtc = None
-    LOGGER.warning("Invalid spamwatch api")
-else:
-    spamwtc = spamwatch.Client(SPAMWATCH)
-
 
 
 # Telethon
