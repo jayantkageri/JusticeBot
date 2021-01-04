@@ -9,7 +9,6 @@ from telegram.ext.dispatcher import run_async
 from telegram.utils.helpers import mention_html
 
 from skylee import dispatcher
-from skylee.modules.disable import DisableAbleCommandHandler
 from skylee.modules.helper_funcs.chat_status import (
     bot_admin,
     can_promote,
