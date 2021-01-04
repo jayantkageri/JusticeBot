@@ -28,7 +28,6 @@ from skylee import (
     SUDO_USERS,
     SUPPORT_USERS,
     WHITELIST_USERS,
-
 )
 from skylee.__main__ import STATS, USER_INFO, GDPR
 from skylee.modules.disable import DisableAbleCommandHandler
@@ -107,7 +106,7 @@ def info(update, context):
         return
 
     del_msg = msg.reply_text(
-        "Getting Information...",
+        "Hold tight while I steal some data from <b>FBI Database</b>...",
         parse_mode=ParseMode.HTML,
     )
 
@@ -129,23 +128,35 @@ def info(update, context):
         context.bot.get_user_profile_photos(user.id).total_count
     )
 
+    try:
+        sw = spamwtc.get_ban(int(user.id))
+        if sw:
+            text += "\n\n<b>This person is banned in Spamwatch!</b>"
+            text += f"\nResason: <pre>{sw.reason}</pre>"
+        else:
+            pass
+    except:
+        pass  # Don't break on exceptions like if api is down?
 
     if user.id == OWNER_ID:
-        text += "\n\nThis user is My Owner"
+        text += "\n\nAye this guy is my owner.\nI would never do anything against him!"
 
     elif user.id in SUDO_USERS:
         text += (
             "\n\nThis person is one of my sudo users! "
+            "Nearly as powerful as my owner - so watch it."
         )
 
     elif user.id in SUPPORT_USERS:
         text += (
             "\n\nThis person is one of my support users! "
+            "Not quite a sudo user, but can still gban you off the map."
         )
 
     elif user.id in WHITELIST_USERS:
         text += (
             "\n\nThis person has been whitelisted! "
+            "That means I'm not allowed to ban/kick them."
         )
 
     try:
@@ -194,8 +205,6 @@ def echo(update, context):
     message.delete()
 
 
-
-
 MARKDOWN_HELP = """
 Markdown is a very powerful formatting tool supported by telegram. {} has some enhancements, to make sure that \
 saved messages are correctly parsed, and to allow you to create buttons.
@@ -223,6 +232,20 @@ Keep in mind that your message <b>MUST</b> contain some text other than just a b
 """.format(
     dispatcher.bot.first_name
 )
+
+
+@run_async
+@typing_action
+def markdown_help(update, context):
+    update.effective_message.reply_text(MARKDOWN_HELP, parse_mode=ParseMode.HTML)
+    update.effective_message.reply_text(
+        "Try forwarding the following message to me, and you'll see!"
+    )
+    update.effective_message.reply_text(
+        "/save test This is a markdown test. _italics_, --underline--, *bold*, `code`, ~strike~ "
+        "[URL](example.com) [button](buttonurl:github.com) "
+        "[button2](buttonurl://google.com:same)"
+    )
 
 
 
@@ -253,6 +276,7 @@ def getlink(update, context):
             links += str(chat_id) + ":\n" + excp.message + "\n"
 
     message.reply_text(links)
+
 
 
 @run_async
@@ -306,4 +330,3 @@ dispatcher.add_handler(MD_HELP_HANDLER)
 dispatcher.add_handler(STATS_HANDLER)
 dispatcher.add_handler(GETLINK_HANDLER)
 dispatcher.add_handler(STAFFLIST_HANDLER)
-
