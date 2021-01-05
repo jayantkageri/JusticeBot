@@ -20,12 +20,13 @@ from skylee import (
     LOGGER,
     BLACKLIST_CHATS,
     WHITELIST_CHATS,
+    client
+
 )
 
 # needed to dynamically load modules
 # NOTE: Module order is not guaranteed, specify that in the config file!
 from skylee.modules import ALL_MODULES
-from skylee.modules.purge import client
 from skylee.modules.helper_funcs.chat_status import is_user_admin
 from skylee.modules.helper_funcs.misc import paginate_modules
 from skylee.modules.helper_funcs.alternate import typing_action
