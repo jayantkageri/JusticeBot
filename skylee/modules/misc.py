@@ -33,6 +33,17 @@ from skylee.__main__ import STATS, USER_INFO, GDPR
 from skylee.modules.helper_funcs.extraction import extract_user
 from skylee.modules.helper_funcs.filters import CustomFilters
 from skylee.modules.helper_funcs.alternate import typing_action, send_action
+from skylee.modules.helper_funcs.misc import is_module_loaded
+
+if is_module_loaded(FILENAME):
+    from skylee.modules.helper_funcs.chat_status import user_admin, is_user_admin
+    from telegram.ext.dispatcher import run_async
+
+    from skylee.modules.sql import disable_sql as sql
+
+    DISABLE_CMDS = []
+    DISABLE_OTHER = []
+    ADMIN_CMDS = []
 
     class DisableAbleCommandHandler(CommandHandler):
         def __init__(self, command, callback, admin_ok=False, **kwargs):
