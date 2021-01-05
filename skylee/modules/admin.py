@@ -21,14 +21,11 @@ from skylee.modules.helper_funcs.admin_rights import (
     user_can_changeinfo,
 )
 from skylee.modules.helper_funcs.alternate import typing_action
-from skylee.modules.log_channel import loggable
-from skylee.modules.disable import DisableAbleCommandHandler
 
 @run_async
 @bot_admin
 @can_promote
 @user_admin
-@loggable
 @typing_action
 def promote(update, context):
     chat_id = update.effective_chat.id
@@ -87,7 +84,6 @@ def promote(update, context):
 @bot_admin
 @can_promote
 @user_admin
-@loggable
 @typing_action
 def demote(update, context):
     chat = update.effective_chat
@@ -154,7 +150,6 @@ def demote(update, context):
 @run_async
 @bot_admin
 @user_admin
-@loggable
 @typing_action
 def pin(update, context):
     args = context.args
@@ -199,7 +194,6 @@ def pin(update, context):
 @run_async
 @bot_admin
 @user_admin
-@loggable
 @typing_action
 def unpin(update, context):
     chat = update.effective_chat
@@ -527,11 +521,6 @@ PROMOTE_HANDLER = CommandHandler(
     "promote", promote, pass_args=True, filters=Filters.group
 )
 DEMOTE_HANDLER = CommandHandler("demote", demote, pass_args=True, filters=Filters.group)
-
-SET_TITLE_HANDLER = DisableAbleCommandHandler("settitle", set_title, pass_args=True)
-ADMINLIST_HANDLER = DisableAbleCommandHandler(
-    "adminlist", adminlist, filters=Filters.group
-)
 
 dispatcher.add_handler(PIN_HANDLER)
 dispatcher.add_handler(UNPIN_HANDLER)
