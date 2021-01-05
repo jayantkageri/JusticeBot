@@ -9,7 +9,7 @@ from telegram import ChatAction
 from telegram.ext import run_async
 
 from skylee import dispatcher
-from skylee.modules.disable import DisableAbleCommandHandler
+from skylee.modules.misc import DisableAbleCommandHandler
 from skylee.modules.helper_funcs.alternate import typing_action, send_action
 
 from googletrans import Translator
