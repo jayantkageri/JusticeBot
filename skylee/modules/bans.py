@@ -6,7 +6,6 @@ from telegram.ext import run_async, CommandHandler, Filters
 from telegram.utils.helpers import mention_html
 
 from skylee import dispatcher, LOGGER
-from skylee.modules.disable import DisableAbleCommandHandler
 from skylee.modules.helper_funcs.chat_status import (
     bot_admin,
     user_admin,
@@ -19,14 +18,11 @@ from skylee.modules.helper_funcs.extraction import extract_user_and_text
 from skylee.modules.helper_funcs.string_handling import extract_time
 from skylee.modules.helper_funcs.admin_rights import user_can_ban
 from skylee.modules.helper_funcs.alternate import typing_action
-from skylee.modules.log_channel import loggable
-
 
 @run_async
 @bot_admin
 @can_restrict
 @user_admin
-@loggable
 @typing_action
 def ban(update, context):
     chat = update.effective_chat  # type: Optional[Chat]
@@ -110,7 +106,6 @@ def ban(update, context):
 @bot_admin
 @can_restrict
 @user_admin
-@loggable
 @typing_action
 def temp_ban(update, context):
     chat = update.effective_chat  # type: Optional[Chat]
@@ -209,7 +204,6 @@ def temp_ban(update, context):
 @bot_admin
 @can_restrict
 @user_admin
-@loggable
 @typing_action
 def kick(update, context):
     chat = update.effective_chat  # type: Optional[Chat]
@@ -278,7 +272,6 @@ def kick(update, context):
 @run_async
 @bot_admin
 @can_restrict
-@loggable
 @typing_action
 def banme(update, context):
     user_id = update.effective_message.from_user.id
@@ -326,7 +319,6 @@ def kickme(update, context):
 @bot_admin
 @can_restrict
 @user_admin
-@loggable
 @typing_action
 def unban(update, context):
     message = update.effective_message  # type: Optional[Message]
@@ -387,8 +379,6 @@ __help__ = """
 Some people need to be publicly banned; spammers, annoyances, or just trolls.
 This module allows you to do that easily, by exposing some common actions, so everyone will see!
 
- ✗ /kickme: Kicks the user who issued the command
- ✗ /banme: Bans the user who issued the command
 *Admin only:*
  ✗ /ban <userhandle>: Bans a user. (via handle, or reply)
  ✗ /tban <userhandle> x(m/h/d): Bans a user for x time. (via handle, or reply). m = minutes, h = hours, d = days.
@@ -407,12 +397,8 @@ TEMPBAN_HANDLER = CommandHandler(
 )
 KICK_HANDLER = CommandHandler("kick", kick, pass_args=True, filters=Filters.group)
 UNBAN_HANDLER = CommandHandler("unban", unban, pass_args=True, filters=Filters.group)
-KICKME_HANDLER = DisableAbleCommandHandler("kickme", kickme, filters=Filters.group)
-BANME_HANDLER = DisableAbleCommandHandler("banme", banme, filters=Filters.group)
 
 dispatcher.add_handler(BAN_HANDLER)
 dispatcher.add_handler(TEMPBAN_HANDLER)
 dispatcher.add_handler(KICK_HANDLER)
 dispatcher.add_handler(UNBAN_HANDLER)
-dispatcher.add_handler(KICKME_HANDLER)
-dispatcher.add_handler(BANME_HANDLER)
