@@ -33,70 +33,7 @@ from skylee.__main__ import STATS, USER_INFO, GDPR
 from skylee.modules.helper_funcs.extraction import extract_user
 from skylee.modules.helper_funcs.filters import CustomFilters
 from skylee.modules.helper_funcs.alternate import typing_action, send_action
-from skylee.modules.helper_funcs.misc import is_module_loaded
-
-if is_module_loaded(FILENAME):
-    from skylee.modules.helper_funcs.chat_status import user_admin, is_user_admin
-    from telegram.ext.dispatcher import run_async
-
-    from skylee.modules.sql import disable_sql as sql
-
-    DISABLE_CMDS = []
-    DISABLE_OTHER = []
-    ADMIN_CMDS = []
-
-    class DisableAbleCommandHandler(CommandHandler):
-        def __init__(self, command, callback, admin_ok=False, **kwargs):
-            super().__init__(command, callback, **kwargs)
-            self.admin_ok = admin_ok
-            if isinstance(command, string_types):
-                DISABLE_CMDS.append(command)
-                if admin_ok:
-                    ADMIN_CMDS.append(command)
-            else:
-                DISABLE_CMDS.extend(command)
-                if admin_ok:
-                    ADMIN_CMDS.extend(command)
-
-        def check_update(self, update):
-            if isinstance(update, Update) and update.effective_message:
-                message = update.effective_message
-
-                if message.text and len(message.text) > 1:
-                    fst_word = message.text.split(None, 1)[0]
-                    if len(fst_word) > 1 and any(
-                        fst_word.startswith(start) for start in CMD_STARTERS
-                    ):
-                        args = message.text.split()[1:]
-                        command = fst_word[1:].split("@")
-                        command.append(message.bot.username)
-
-                        if not (
-                            command[0].lower() in self.command
-                            and command[1].lower() == message.bot.username.lower()
-                        ):
-                            return None
-
-                        filter_result = self.filters(update)
-                        if filter_result:
-                            chat = update.effective_chat
-                            user = update.effective_user
-                            # disabled, admincmd, user admin
-                            if sql.is_command_disabled(chat.id, command[0].lower()):
-                                # check if command was disabled
-                                is_disabled = command[
-                                    0
-                                ] in ADMIN_CMDS and is_user_admin(chat, user.id)
-                                if not is_disabled:
-                                    return None
-                                else:
-                                    return args, filter_result
-
-                            return args, filter_result
-                        else:
-                            return False
-
-
+from skylee.modules.disable import DisableAbleCommandHandler
 
 @run_async
 @typing_action
