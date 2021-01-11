@@ -37,7 +37,7 @@ LOCKED 🔐
 AUTHORISED CHATS ONLY
 
 HOST IT YOURSELF
-SOURCE : https://github.com/jayantkageri/NetworkManager
+SOURCE : https://github.com/jayantkageri/JusticeBot
 
 IF YOU DON'T WANT TO HOST YOURSELF, USE @MissEmiliaBot Instead"""
 
