@@ -6,7 +6,7 @@ It's Just a Clone of [this Repo](https://github.com/EmiliaDevs/SkyleeBot) and I 
 
 # Credits :-
 
-Credits for fixing bugs- [StarkGang](https://github.com/StarkGang) and [God Stick](https://github.com/EmiliaDevs)
+Credits for fixing bugs- [StarkGang](https://github.com/StarkGang) and [God Drick](https://github.com/EmiliaDevs)
 
 
 Credits For Designing The Bot Goes To It's Original Developers. It's Just A Bug Fixed Version Of SkyleeBot.
