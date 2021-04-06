@@ -15,10 +15,12 @@
     "ENV": {
       "description": "Setting this to ANYTHING will enable env variables",
       "value": "ANYTHING"
+      "required": false
     },
     "TOKEN": {
       "description": "Your bot token, as a string.",
       "value": ""
+      "required": true
     },
     "TL_APP_ID": {
       "description": "Your account API ID. Get it from my.telegram.org",
@@ -43,10 +45,12 @@
     "WEBHOOK": {
       "description": "Setting this to ANYTHING will enable webhooks when in env mode messages",
       "value": "ANYTHING"
+      "required": false
     },
     "URL": {
       "description": "The Heroku App URL similar to https://<appname>.herokuapp.com/",
       "value": "Heroku url"
+      "required": false
     },
     "MESSAGE_DUMP": {
       "description": "optional: a chat where your replied saved messages are stored, to stop people deleting their old",
@@ -56,14 +60,17 @@
     "SUDO_USERS": {
       "description": "A space separated list of user_ids which should be considered sudo users",
       "value": "1083049180"
+      "required": false
     },
     "SUPPORT_USERS": {
       "description": "A space separated list of user_ids which should be considered support users (can gban/ungban, nothing else)",
       "value": ""
+      "required": false
     },
     "WHITELIST_USERS": {
       "description": "A space separated list of user_ids which should be considered whitelisted - they can't be banned.",
       "value": ""
+      "required": false
     },
     "DONATION_LINK": {
       "description": "Optional: link where you would like to receive donations.",
@@ -102,11 +109,11 @@
     "NO_LOAD": {
       "description": "Modules Loader.",
       "value": "['translation', 'sed']"
+      "required": false
     },
     "SQLALCHEMY_DATABASE_URI": {
       "description": "db.",
       "value": "sqldbtype://username:pw@hostname:port/db_name"
-      
     }
   },
   "addons": [
